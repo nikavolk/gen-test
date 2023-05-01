@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Form } from "./components/Form/Form";
 import { handleSubmit, handleLocationInputChange } from "./helpers/handlers";
 import { TemperatureRecord } from "./types/types";
+import { Statistics } from "./components/Statistics/Statistics";
 
 function App() {
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -45,6 +46,7 @@ function App() {
         handleDateChange={(e) => setDate(e.target.value)}
         handleTemperatureChange={(e) => setTemperature(e.target.value)}
       />
+      <Statistics temperatureRecords={temperatureRecords} />
     </div>
   );
 }

@@ -14,3 +14,8 @@ export interface FormProps {
   handleDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTemperatureChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface HotAndCold {
+  hot: number;
+  cold: number;
+}
