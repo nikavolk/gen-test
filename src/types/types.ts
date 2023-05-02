@@ -13,6 +13,7 @@ export interface FormProps {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTemperatureChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSuggestionClick: (suggestion: string) => void;
 }
 
 export interface HotAndCold {

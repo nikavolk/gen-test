@@ -43,6 +43,11 @@ function App() {
     handleFilter(start, end, setTemperatureRecords);
   };
 
+  const handleSuggestionClick = (suggestion: string) => {
+    setLocationInput(suggestion);
+    setSuggestions([]);
+  };
+
   return (
     <div className="App">
       <Form
@@ -54,6 +59,7 @@ function App() {
         handleInputChange={handleInputChange}
         handleDateChange={(e) => setDate(e.target.value)}
         handleTemperatureChange={(e) => setTemperature(e.target.value)}
+        handleSuggestionClick={handleSuggestionClick}
       />
       <DateFilter onFilter={handleDateFilter} />{" "}
       <Statistics temperatureRecords={temperatureRecords} />

@@ -1,4 +1,3 @@
-// Form.tsx
 import React from "react";
 import { FormProps } from "../../types/types";
 
@@ -11,26 +10,33 @@ export const Form: React.FC<FormProps> = ({
   handleInputChange,
   handleDateChange,
   handleTemperatureChange,
+  handleSuggestionClick,
 }) => {
   return (
     <form onSubmit={handleFormSubmit}>
-      <div>
-        <label>
-          Location:
-          <input
-            type="text"
-            placeholder="Enter location"
-            value={locationInput}
-            onChange={handleInputChange}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Date:
-          <input type="date" value={date} onChange={handleDateChange} />
-        </label>
-      </div>
+      <label>
+        Location:
+        <input
+          type="text"
+          placeholder="Enter location"
+          value={locationInput}
+          onChange={handleInputChange}
+        />
+      </label>
+      <ul className="suggestions-dropdown">
+        {suggestions.map((suggestion) => (
+          <li
+            key={suggestion}
+            onClick={() => handleSuggestionClick(suggestion)}
+          >
+            {suggestion}
+          </li>
+        ))}
+      </ul>
+      <label>
+        Date:
+        <input type="date" value={date} onChange={handleDateChange} />
+      </label>
       <label>
         Temperature (°C):
         <input
