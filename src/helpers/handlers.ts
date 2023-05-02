@@ -1,5 +1,6 @@
 import { TemperatureRecord } from "../types/types";
 import { mockApi } from "../misc/mockApi";
+import { throttle } from "./throttle";
 
 const api = mockApi();
 
@@ -48,11 +49,14 @@ export const handleLocationInputChange = async (
   }
 };
 
-export const handleFilter = async (
-  start: number,
-  end: number,
-  setTemperatureRecords: (records: TemperatureRecord[]) => void,
-) => {
-  const filteredRecords = await api.getTemperaturesDuring(start, end);
-  setTemperatureRecords(filteredRecords);
-};
+export const handleFilter = throttle(
+  async (
+    start: number,
+    end: number,
+    setTemperatureRecords: (records: TemperatureRecord[]) => void,
+  ) => {
+    const filteredRecords = await api.getTemperaturesDuring(start, end);
+    setTemperatureRecords(filteredRecords);
+  },
+  500,
+);
