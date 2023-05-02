@@ -47,3 +47,12 @@ export const handleLocationInputChange = async (
     setSuggestions([]);
   }
 };
+
+export const handleFilter = async (
+  start: number,
+  end: number,
+  setTemperatureRecords: (records: TemperatureRecord[]) => void,
+) => {
+  const filteredRecords = await api.getTemperaturesDuring(start, end);
+  setTemperatureRecords(filteredRecords);
+};

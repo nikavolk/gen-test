@@ -1,9 +1,14 @@
 import "./App.css";
 import React, { useState } from "react";
 import { Form } from "./components/Form/Form";
-import { handleSubmit, handleLocationInputChange } from "./helpers/handlers";
+import {
+  handleSubmit,
+  handleLocationInputChange,
+  handleFilter,
+} from "./helpers/handlers";
 import { TemperatureRecord } from "./types/types";
 import { Statistics } from "./components/Statistics/Statistics";
+import { DateFilter } from "./components/DateFilter/DateFilter";
 
 function App() {
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -34,6 +39,10 @@ function App() {
     handleLocationInputChange(e, setLocationInput, setSuggestions);
   };
 
+  const handleDateFilter = (start: number, end: number) => {
+    handleFilter(start, end, setTemperatureRecords);
+  };
+
   return (
     <div className="App">
       <Form
@@ -46,6 +55,7 @@ function App() {
         handleDateChange={(e) => setDate(e.target.value)}
         handleTemperatureChange={(e) => setTemperature(e.target.value)}
       />
+      <DateFilter onFilter={handleDateFilter} />{" "}
       <Statistics temperatureRecords={temperatureRecords} />
     </div>
   );

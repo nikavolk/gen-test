@@ -19,3 +19,7 @@ export interface HotAndCold {
   hot: number;
   cold: number;
 }
+
+export interface DateFilterProps {
+  onFilter: (start: number, end: number) => void;
+}
